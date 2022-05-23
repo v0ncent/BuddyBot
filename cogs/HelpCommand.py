@@ -6,7 +6,7 @@
 from discord.ext import commands
 
 
-class HelpCCommand(commands.Cog):
+class HelpCommand(commands.Cog):
     def __init__(self, buddybot):
         self.buddybot = buddybot
 
@@ -17,4 +17,4 @@ class HelpCCommand(commands.Cog):
 
 
 def setup(buddybot):
-    buddybot.add_cog(HelpCCommand(buddybot))
+    buddybot.add_cog(HelpCommand(buddybot))
