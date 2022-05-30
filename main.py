@@ -24,6 +24,8 @@ buddy_bot = commands.Bot(  # set bot prefix and enable all gateway intents
     intents=discord.Intents.all()
 )
 
+buddy_bot.remove_command('help') # remove default help command
+
 # load cogs
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
@@ -36,6 +38,10 @@ async def on_ready():
     print('Buddy Bot Online')
     # set buddy bot status
     await buddy_bot.change_presence(activity=discord.Game("CHANGE ME WITH WALK COMMAND"))
+
+
+#---CONSTANTS---
+
 
 
 if __name__ == '__main__':
