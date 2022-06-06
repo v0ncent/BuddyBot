@@ -2,9 +2,9 @@
 # ---BuddyBot HelpCommand---
 
 # ---imports---
-# discord libraries
+# python libraries
 import random
-
+# discord libraries
 import discord
 from discord.ext import commands
 
@@ -30,7 +30,6 @@ class HelpCommand(commands.Cog):
                               )
         embed.set_thumbnail(
             url=Constants.logos[random_index])
-
 
         await ctx.send(embed=embed)
 

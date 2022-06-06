@@ -24,12 +24,13 @@ buddy_bot = commands.Bot(  # set bot prefix and enable all gateway intents
     intents=discord.Intents.all()
 )
 
-buddy_bot.remove_command('help') # remove default help command
 
-# load cogs
-for filename in os.listdir('./cogs'):
-    if filename.endswith('.py'):
-        buddy_bot.load_extension(f'cogs.{filename[:-3]}')
+def buildCogs():
+    # load cogs
+    buddy_bot.remove_command('help')  # remove default help command
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            buddy_bot.load_extension(f'cogs.{filename[:-3]}')
 
 
 # when start up is complete
@@ -40,12 +41,9 @@ async def on_ready():
     await buddy_bot.change_presence(activity=discord.Game("CHANGE ME WITH WALK COMMAND"))
 
 
-#---CONSTANTS---
-
-
-
 if __name__ == '__main__':
     try:
+        buildCogs()
         buddy_bot.run(token)  # bot logs in with token
     except Exception as e:
         print(f"Something went wrong.\n{e}")
