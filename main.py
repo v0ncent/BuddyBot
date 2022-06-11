@@ -5,22 +5,18 @@
 # ---imports---
 
 # file tools
-import json
 import os
 
 # discord libraries
 import discord
 from discord.ext import commands
 
-# create variables from json info
-with open('config.json') as f:
-    data = json.load(f)
-    token = data["TOKEN"]
-    prefix = data["PREFIX"]
+# constants
+import Constants
 
 # create buddy_bot variable
 buddy_bot = commands.Bot(  # set bot prefix and enable all gateway intents
-    command_prefix=prefix,
+    command_prefix=Constants.prefix,
     intents=discord.Intents.all()
 )
 
@@ -44,6 +40,6 @@ async def on_ready():
 if __name__ == '__main__':
     try:
         buildCogs()
-        buddy_bot.run(token)  # bot logs in with token
+        buddy_bot.run(Constants.token)  # bot logs in with token
     except Exception as e:
         print(f"Something went wrong.\n{e}")

@@ -10,7 +10,7 @@ from discord.ext import commands
 from main import buddy_bot
 
 
-class DeveloperTules(commands.Cog):
+class DeveloperTools(commands.Cog):
     def __init__(self, buddybot):
         self.buddybot = buddybot
 
@@ -42,4 +42,4 @@ class DeveloperTules(commands.Cog):
 
 
 def setup(buddybot):
-    buddybot.add_cog(DeveloperTules(buddybot))
+    buddybot.add_cog(DeveloperTools(buddybot))

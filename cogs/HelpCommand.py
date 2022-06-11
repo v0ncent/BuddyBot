@@ -3,13 +3,24 @@
 
 # ---imports---
 # python libraries
+import os
 import random
+
 # discord libraries
 import discord
 from discord.ext import commands
 
 # project files
 import Constants
+
+
+def get_type():
+    cog_list = []
+    for cog in os.listdir('./cogs'):
+        if cog.endswith('.py'):
+            list.append(cog_list, cog[:-3])
+
+    return cog_list
 
 
 class HelpCommand(commands.Cog):
@@ -23,6 +34,8 @@ class HelpCommand(commands.Cog):
 
     @commands.group(invoke_without_command=True)
     async def help(self, ctx):
+        print(ctx.message.author.id)
+        cog_list = get_type()
         random_index = random.randrange(len(Constants.logos))
         embed = discord.Embed(title='List of commands',
                               description='use $help (command) for more info on usage',
@@ -30,6 +43,10 @@ class HelpCommand(commands.Cog):
                               )
         embed.set_thumbnail(
             url=Constants.logos[random_index])
+
+        for index in cog_list:
+            if index == "DeveloperTools":
+                embed.add_field(name=index, value="test", inline=True)
 
         await ctx.send(embed=embed)
 
