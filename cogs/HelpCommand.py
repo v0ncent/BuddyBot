@@ -46,10 +46,8 @@ class HelpCommand(commands.Cog):
                               )
         embed.set_thumbnail(
             url=Constants.logos[random_index])
-        print(ctx.author.id)
-        print(Constants.owner_id)
         if Constants.owner_id == ctx.author.id:
-            embed.add_field(name="Working", value="test", inline=True)
+            embed.add_field(name="Developer Tools", value="``load``,``unload``,``shutdown``", inline=True)
         for index in cog_list:
             for cog in restricted_cogs:
                 if index == "HelpCommand" or index == cog:
