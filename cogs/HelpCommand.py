@@ -14,6 +14,7 @@ from discord.ext import commands
 import Constants
 
 
+# function for getting different types of commands from cogs
 def get_type():
     cog_list = []
     for cog in os.listdir('./cogs'):
@@ -34,7 +35,9 @@ class HelpCommand(commands.Cog):
 
     @commands.group(invoke_without_command=True)
     async def help(self, ctx):
-        print(ctx.message.author.id)
+        restricted_cogs = [
+            "DeveloperTools"
+        ]
         cog_list = get_type()
         random_index = random.randrange(len(Constants.logos))
         embed = discord.Embed(title='List of commands',
@@ -43,10 +46,16 @@ class HelpCommand(commands.Cog):
                               )
         embed.set_thumbnail(
             url=Constants.logos[random_index])
-
+        print(ctx.author.id)
+        print(Constants.owner_id)
+        if Constants.owner_id == ctx.author.id:
+            embed.add_field(name="Working", value="test", inline=True)
         for index in cog_list:
-            if index == "DeveloperTools":
-                embed.add_field(name=index, value="test", inline=True)
+            for cog in restricted_cogs:
+                if index == "HelpCommand" or index == cog:
+                    pass
+                else:
+                    embed.add_field(name=index, value="test", inline=True)
 
         await ctx.send(embed=embed)
 

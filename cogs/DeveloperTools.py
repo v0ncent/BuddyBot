@@ -1,9 +1,8 @@
 # Vincent Banks
-# ---BuddyBot DeveloperTules---
+# ---BuddyBot DeveloperTools---
 
 # ---imports---
 # discord libraries
-import discord.ext.commands
 from discord.ext import commands
 
 # project files
