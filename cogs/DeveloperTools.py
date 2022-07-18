@@ -13,6 +13,10 @@ class DeveloperTools(commands.Cog):
     def __init__(self, buddybot):
         self.buddybot = buddybot
 
+    def get_commands(self):
+        com_list = "``load``,``unload``,``shutdown``"
+        return com_list
+
     # when cog is loaded
     @commands.Cog.listener()
     async def on_ready(self):

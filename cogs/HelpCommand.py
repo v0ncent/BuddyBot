@@ -12,9 +12,10 @@ from discord.ext import commands
 
 # project files
 import Constants
-
-
 # function for getting different types of commands from cogs
+from main import buddy_bot
+
+
 def get_type():
     cog_list = []
     for cog in os.listdir('./cogs'):
@@ -22,6 +23,17 @@ def get_type():
             list.append(cog_list, cog[:-3])
 
     return cog_list
+
+
+def get_command_list(cog):
+    try:
+        command_list = []
+        for command in buddy_bot.commands:
+            if command.cog and command.cog.qualified_name == cog:
+                command_list.append(command.name)
+        return command_list
+    except Exception as e:
+        print(e)
 
 
 class HelpCommand(commands.Cog):
@@ -53,6 +65,8 @@ class HelpCommand(commands.Cog):
                 if index == "HelpCommand" or index == cog:
                     pass
                 else:
+                    print(get_command_list('DeveloperTools'))
+                    print(get_command_list(index))
                     embed.add_field(name=index, value="test", inline=True)
 
         await ctx.send(embed=embed)
