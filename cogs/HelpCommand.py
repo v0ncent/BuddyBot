@@ -25,17 +25,6 @@ def get_type():
     return cog_list
 
 
-def get_command_list(cog):
-    try:
-        command_list = []
-        for command in buddy_bot.commands:
-            if command.cog and command.cog.qualified_name == cog:
-                command_list.append(command.name)
-        return command_list
-    except Exception as e:
-        print(e)
-
-
 class HelpCommand(commands.Cog):
     def __init__(self, buddybot):
         self.buddybot = buddybot
@@ -65,8 +54,6 @@ class HelpCommand(commands.Cog):
                 if index == "HelpCommand" or index == cog:
                     pass
                 else:
-                    print(get_command_list('DeveloperTools'))
-                    print(get_command_list(index))
                     embed.add_field(name=index, value="test", inline=True)
 
         await ctx.send(embed=embed)
